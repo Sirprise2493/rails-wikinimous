@@ -1,0 +1,17 @@
+<h1 class="mb-3">Articles</h1>
+
+<% if @articles.any? %>
+  <div class="list-group">
+    <% @articles.each do |article| %>
+      <a href="<%= article_path(article) %>" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= article.title %></h5>
+          <small><%= l(article.created_at, format: :short) %></small>
+        </div>
+        <p class="mb-1 text-muted"><%= truncate(article.content, length: 120) %></p>
+      </a>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-info">No articles yet. Create your first one!</div>
+<% end %>
